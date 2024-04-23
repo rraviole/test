@@ -3,15 +3,31 @@
 <body>
 
 <p id="test">Click</p>
-<p id="res">0</p>
+<p id="res">0</p><br><br>
+
+<p id="clicker">Buy clicker $25   </p><p id="clicker-nb"></p>
 
 <script>
 let nb = 0;
+let clickers = 0;
+let autoNb = 0;
 document.getElementById("test").onclick = function() {myFunction()};
+document.getElementById("clicker").onclick = function() {buyClicker()};
+
+while (autoNb > 0){
+  nb = nb+autoNb;
+}
 
 function myFunction() {
   nb = nb+1;
-  document.getElementById("res").innerHTML = nb;
+  document.getElementById("res").innerHTML = "$" + nb;
+}
+
+function buyClicker() {
+  if (nb>=25) {
+    document.getElementById("clicker-nb").innerHTML = clickers;
+    autoNb = autoNb+1;
+  }
 }
 </script>
 
