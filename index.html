@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <body>
 
@@ -31,5 +31,71 @@ function buyClicker() {
 }
 </script>
 
+</body>
+</html>
+ -->
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div class="weather-widget">
+    <h2>Weatherapi</h2>
+    <div class="temperature" id="temperature">Test</div>
+    <div class="details" id="description">Skriiit</div>
+    <h2>openmeteo</h2>
+    <div class="temperature2" id="temperature2">Test</div>
+    <div class="details2" id="description2">Skriiit</div>
+</div>
+<script>
+
+async function fetchWeather() {
+    try {
+        const response = await fetch('https://api.weatherapi.com/v1/current.json?key=demo&q=auto:ip');
+        const data = await response.json();
+
+        document.getElementById('temperature').textContent = '${Math.round(data.current.temp_c)} °C';
+        document.getElementById('description').textContent = data.current.condition.text;
+    } catch (error) {
+        document.getElementById('temperature').textContent = 'FUCKFUCKFUCKABORT ABORT';
+    }
+}
+
+async function fetchWeather2(lat, lon) {
+    try {
+        const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true');
+        const data = await response.json();
+
+        document.getElementById('temperature2').textContent = '${Math.round(data.current_weather.temperature)} °C';
+        document.getElementById('description2').textContent = data.current_weather.weathercode.text;
+    } catch (error) {
+        document.getElementById('temperature2').textContent = 'FUCKFUCKFUCKABORT ABORT';
+    }
+}
+
+async function fetchLocation() {
+    try {
+        const response = await fetch('http://ip-api.com/json/');
+        const data = await response.json();
+
+        if (locationData.status === "success") {
+            const { lat, lon } = locationData;
+            fetchWeather2(lat, lon);
+        } else {
+            document.getElementById('description2').textContent = 'HELP HELPP MEE MICHEALLL';
+        }
+    } catch (error) {
+        document.getElementById('temperature2').textContent = 'FUCKFUCKFUCKABORT ABORT';
+    }
+}
+
+fetchWeather();
+fetchLocation();
+document.getElementById('description2').textContent = $lat;
+</script>
 </body>
 </html>
