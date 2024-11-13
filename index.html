@@ -50,6 +50,9 @@ function buyClicker() {
     <h2>openmeteo</h2>
     <div class="temperature2" id="temperature2">Test</div>
     <div class="details2" id="description2">Skriiit</div>
+    <h2>lat lon</h2>
+    <div class="lat" id="lat">Test</div>
+    <div class="lon" id="lon">Skriiit</div>
 </div>
 <script>
 
@@ -95,7 +98,8 @@ async function fetchLocation() {
 
 fetchWeather();
 fetchLocation();
-document.getElementById('description2').textContent = $lat;
+document.getElementById('lat').textContent = lat;
+document.getElementById('lon').textContent = lon;
 </script>
 </body>
 </html>
